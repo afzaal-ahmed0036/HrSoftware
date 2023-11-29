@@ -1,0 +1,35 @@
+date : 03-11-2022
+
+CREATE TABLE `emp_salary` (
+  `EmployeeAllowanceID` int(8) NOT NULL AUTO_INCREMENT,
+  `EmployeeID` int(8) DEFAULT NULL,
+  `AllowanceListID` int(8) DEFAULT NULL,
+  `Amount` int(8) DEFAULT NULL,
+  `Active` varchar(3) DEFAULT 'Y',
+  `eDate` timestamp NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`EmployeeAllowanceID`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+
+=========================================================================
+date: 10-11-2022
+CREATE or replace VIEW `v_leave` AS select `leave`.`LeaveID` AS `LeaveID`,`branch`.`BranchName` AS `BranchName`,`leave`.`EmployeeID` AS `EmployeeID`,`v_employee`.`FirstName` AS `FirstName`,`v_employee`.`MiddleName` AS `MiddleName`,`v_employee`.`LastName` AS `LastName`,`v_employee`.`JobTitleName` AS `JobTitleName`,`v_employee`.`DepartmentName` AS `DepartmentName`,`leave`.`FromDate` AS `FromDate`,`leave`.`ToDate` AS `ToDate`,to_days(`leave`.`ToDate`) - to_days(`leave`.`FromDate`) AS `NoOfDays`,`leave`.`Reason` AS `Reason`,`leave`.`DaysApproved` AS `DaysApproved`,`leave`.`DaysRemaining` AS `DaysRemaining`,`leave`.`OMStatus` AS `OMStatus`,`leave`.`HRStatus` AS `HRStatus`,`leave`.`GMStatus` AS `GMStatus`,`leave`.`BranchID` AS `BranchID`,`leave`.`LeaveTypeID` AS `LeaveTypeID`,`leave_type`.`LeaveTypeName` AS `LeaveTypeName`,`leave_type`.`DaysAllowed` AS `DaysAllowed` from (((`leave` join `branch` on(`leave`.`BranchID` = `branch`.`BranchID`)) join `v_employee` on(`leave`.`EmployeeID` = `v_employee`.`EmployeeID`)) join `leave_type` on(`leave`.`LeaveTypeID` = `leave_type`.`LeaveTypeID`))
+======================================================================
+date: 10-11-2022
+CREATE TABLE `falak_travel_hr`.`monthly_target` (`MonthlyTargetID` INT NOT NULL AUTO_INCREMENT , `BranchID` INT NULL DEFAULT NULL , `MonthName` VARCHAR(255) NULL DEFAULT NULL , `Target` VARCHAR(255) NULL DEFAULT NULL , `CurrentTarget` VARCHAR(255) NULL DEFAULT NULL , `WorkingDays` VARCHAR(255) NULL DEFAULT NULL , `DisableDays` VARCHAR(255) NULL DEFAULT NULL , `eDate` TIMESTAMP NULL DEFAULT NULL , PRIMARY KEY (`MonthlyTargetID`)) ENGINE = MyISAM;
+=======
+CREATE TABLE `monthly_target` (`MonthlyTargetID` INT NOT NULL AUTO_INCREMENT , `BranchID` INT NULL DEFAULT NULL , `MonthName` VARCHAR(255) NULL DEFAULT NULL , `Target` TEXT NULL DEFAULT NULL , `CurrentTarget` VARCHAR(255) NULL DEFAULT NULL , `DisableDays` TEXT NULL DEFAULT NULL , `eDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`MonthlyTargetID`)) ENGINE = MyISAM;
+
+======================================================================
+date: 16-11-2022
+
+CREATE TABLE `falak_travel_hr`.`live_account` (`LiveAccountID` INT NOT NULL AUTO_INCREMENT , `BranchID` INT NULL DEFAULT NULL , `ID` INT NULL DEFAULT NULL , `EmployeeID` INT NULL DEFAULT NULL , `Date` DATE NULL DEFAULT NULL , `Dialer` INT NULL DEFAULT NULL , `Remarks` TEXT NULL DEFAULT NULL , `eDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`LiveAccountID`)) ENGINE = MyISAM;
+
+=====================================================================
+date: 17-11-2022
+
+Create or replace VIEW `v_live_account` AS SELECT `live_account`.`LiveAccountID` AS `LiveAccountID`, `live_account`.`ID` AS `ID`,  date_format(`live_account`.`Date`,'%d/%m/%Y') AS `Date`, date_format(`live_account`.`Date`,'%b-%Y') AS `MonthName`, `employee`.`FirstName` AS `FirstName`, `employee`.`MiddleName` AS `MiddleName`, `employee`.`LastName` AS `LastName`, `live_account`.`Dialer` AS `Dialer`, `live_account`.`EmployeeID` AS `EmployeeID`, `live_account`.`BranchID` AS `BranchID`, `live_account`.`Remarks` AS `Remarks` FROM (`live_account` join `employee` on(`live_account`.`EmployeeID` = `employee`.`EmployeeID`))
+
+======================================================================
+
+date: 21-11-2022
+ALTER TABLE `monthly_target` ADD `LiveTarget` VARCHAR(255) NULL DEFAULT NULL AFTER `CurrentTarget`;
