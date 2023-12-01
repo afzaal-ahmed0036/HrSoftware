@@ -1,7 +1,7 @@
 @extends('template.tmp')
 
 @section('title', $pagetitle)
- 
+
 
 @section('content')
 
@@ -17,8 +17,8 @@
                                     <h4 class="mb-sm-0 font-size-18">Dashboard</h4>
 
                                     <div class="page-title-right ">
-                                        <strong class="text-danger">{{session::get('Email')}}</strong>
-                                         
+                                        <strong class="text-danger">{{Session::get('Email')}}</strong>
+
                                     </div>
 
                                 </div>
@@ -31,19 +31,19 @@
  @if (session('error'))
 
 <div class="alert alert-{{ Session::get('class') }} p-3" id="success-alert">
-                    
-                  {{ Session::get('error') }} 
+
+                  {{ Session::get('error') }}
                 </div>
 
 @endif
 
   @if (count($errors) > 0)
-                                 
+
                             <div >
                 <div class="alert alert-danger pt-3 pl-0   border-3 bg-danger text-white">
                    <p class="font-weight-bold"> There were some problems with your input.</p>
                     <ul>
-                        
+
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
 
@@ -73,7 +73,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                
+
                                         <!--     <div class="col-lg-8 align-self-center">
                                                 <div class="text-lg-center mt-4 mt-lg-0">
                                                     <div class="row">
@@ -93,20 +93,20 @@
                                                             <div>
                                                                 <p class="text-muted text-truncate mb-2">Closer</p>
                                                                 <h5 class="mb-0">18</h5>
-                                                                
+
                                                             </div>
                                                         </div>
                                                          <div class="col-2">
                                                             <div>
                                                                 <p class="text-muted text-truncate mb-2">Floor Manager</p>
                                                                 <h5 class="mb-0">18</h5>
-                                                                
+
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div> -->
-                
+
                                           <!--   <div class="col-lg-2 d-none d-lg-block">
                                                 <div class="clearfix mt-4 mt-lg-0">
                                                     <div class="dropdown float-end">
@@ -186,7 +186,7 @@
                                                 </div>
                                                 <div class="text-muted mt-4">
                                                     <h4 class="text-center"><a href="{{URL('/LeaveAlert')}}">{{count($leave_alert)}}</a> </h4>
-                                                    
+
                                                     <div class="d-flex">
                                                          <span class="ms-2 text-truncate mt-3"> </span>
                                                     </div>
@@ -207,7 +207,7 @@
                                                 </div>
                                                 <div class="text-muted mt-4">
                                                     <h4 class="text-center"><a href="{{URL('/AttendanceAlert')}}">9</a> </h4>
-                                                    
+
                                                     <div class="d-flex">
                                                          <span class="ms-2 text-truncate mt-3"> </span>
                                                     </div>
@@ -230,7 +230,7 @@
                                 <div class="card">
                                     <div class="card-body">
   @if(count($leave_alert)>0)
- 
+
 
 
                                         <table class="table table-sm align-middle table-nowrap mb-0">
@@ -260,9 +260,9 @@
                                          <td >{{$value->DepartmentName}}</td>
                                          <td ><a target="_blank" href="{{URL('/LeaveEdit/'.$value->LeaveID)}}">Detail</a></td>
                                          </tr>
-                                         @endforeach   
+                                         @endforeach
                                          </tbody>
-                                         </table> 
+                                         </table>
 @else
    <p class=" text-danger">No data found</p>
  @endif                                 </div>
@@ -272,7 +272,7 @@
                             </div>
                             <!-- end col -->
 
-                           
+
                         </div>
                                 <!-- end row -->
                             </div>
